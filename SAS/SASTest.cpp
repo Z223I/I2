@@ -2,8 +2,8 @@
 
 #include "StdAfx.h"
 #include <cppunit/config/SourcePrefix.h>
-#include "Money.h"
-#include "MoneyTest.h"
+#include "SAS.h"
+#include "SASTest.h"
 
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( MoneyTest );

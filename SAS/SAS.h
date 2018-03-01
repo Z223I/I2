@@ -3,8 +3,11 @@
 #define MONEY_H
 
 #include <string>
+#include <array>
 #include <stdexcept>
 #include <cppunit/portability/Stream.h>    // or <iostream> if portability is not an issue
+
+using namespace std;
 
 class IncompatibleMoneyError : public std::runtime_error
 {
@@ -23,6 +26,16 @@ public:
     , m_currency( currency )
   {
   }
+
+const int MAX_INTS = 10;
+
+typedef array<int, 10> MyArray;
+
+int binary_search(MyArray ints)
+{
+    int index = -1;
+    return index;
+}
 
   double getAmount() const
   {
