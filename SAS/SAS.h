@@ -31,8 +31,7 @@ public:
 
 typedef array<int, MAX_INTS> MyArray;
 
-int binary_search(MyArray ints, int number)
-{
+  int binary_search(MyArray ints, int number) {
     int start, stop, mid;
 
     start = 0;
@@ -40,26 +39,42 @@ int binary_search(MyArray ints, int number)
     mid = ints.size() / 2;
 
     bool found = false;
+    int index = -1;
 
     do {
       // start, stop and mid are known at the point for every iteration.
-      if (ints[mid] == number) return mid;
+      if ((stop - start + 1) <= 3) {
+        if (ints[start] == number) {
+          found = true;
+          index = start;
+        }
+
+        if (ints[mid]   == number) {
+          found = true;
+          index = mid;
+        }
+
+        if (ints[stop]  == number) {
+          found = true;
+          index = stop;
+        }
+      }
 
       if (ints[mid] > number) {
         // Look to the left half.
-        stop = mid;
-      }
-
-      if (ints[mid] < number) {
+        stop = mid - 1;
+      } else {
         // Look to the right half.
         start = mid;
       }
 
+      // Update mid.
+      mid = (start + stop) / 2;
+
     } while (!found);
 
-    int index = -1;
     return index;
-}
+  }
 
   double getAmount() const
   {

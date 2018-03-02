@@ -42,7 +42,7 @@ MoneyTest::test_binary_search()
 {
   Money::MyArray numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
   int findMe = 4;
-  int indexOfMe = 4;
+  int indexOfMe = 3;
 
   Money money;
   money = Money();
@@ -50,6 +50,10 @@ MoneyTest::test_binary_search()
   int index;
   index = money.binary_search(numbers, findMe);
 
+  if (index != indexOfMe) {
+    cout << "index: " << index << endl;
+    cout << "indexOfMe: " << indexOfMe << endl;
+  }
   CPPUNIT_ASSERT(index == indexOfMe);
 }
 
