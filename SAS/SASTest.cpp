@@ -84,9 +84,14 @@ MoneyTest::test_binary_search_B()
 void
 MoneyTest::test_bubble_sort_A()
 {
-    array<int, 5> unsorted = {5, 1, 4, 2, 8};
-    array<int, 5> sorted =   {1, 2, 4, 5, 8};
-    array<int, 5> result = unsorted;
+    Money::MyArray5 unsorted = {5, 1, 4, 2, 8};
+    Money::MyArray5 sorted =   {1, 2, 4, 5, 8};
+    Money::MyArray5 result = unsorted;
+
+    Money money;
+    money = Money();
+
+    result = money.bubble_sort();
 
     CPPUNIT_ASSERT(result == sorted);
 }

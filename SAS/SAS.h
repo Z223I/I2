@@ -77,6 +77,11 @@ public:
     return index;
   }
 
+  Money::MyArray5 bubble_sort() {
+    Money::MyArray5 arr = {5,4,3,2,1};
+    return arr;
+  }
+
   double getAmount() const
   {
     return m_amount;
