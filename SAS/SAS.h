@@ -21,18 +21,23 @@ public:
 class Money
 {
 public:
-  Money( double amount, std::string currency )
+  Money( double amount = 1, std::string currency = "USD" )
     : m_amount( amount )
     , m_currency( currency )
   {
   }
 
-const int MAX_INTS = 10;
+#define MAX_INTS 10
 
-typedef array<int, 10> MyArray;
+typedef array<int, MAX_INTS> MyArray;
 
-int binary_search(MyArray ints)
+int binary_search(MyArray ints, int number)
 {
+    int start, stop, mid;
+
+    start = 0;
+    stop = ints.size() - 1;
+
     int index = -1;
     return index;
 }

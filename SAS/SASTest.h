@@ -7,6 +7,7 @@
 class MoneyTest : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE( MoneyTest );
+  CPPUNIT_TEST( testBinarySearch );
   CPPUNIT_TEST( testConstructor );
   CPPUNIT_TEST( testEqual );
   CPPUNIT_TEST( testAdd );
@@ -17,6 +18,7 @@ public:
   void setUp();
   void tearDown();
 
+  void testBinarySearch();
   void testConstructor();
   void testEqual();
   void testAdd();

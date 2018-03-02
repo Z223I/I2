@@ -38,6 +38,22 @@ MoneyTest::testConstructor()
 
 
 void
+MoneyTest::testBinarySearch()
+{
+  Money::MyArray numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+  int findMe = 4;
+  int indexOfMe = 4;
+
+  Money money;
+  money = Money();
+
+  int index;
+  index = money.binary_search(numbers, findMe);
+
+  CPPUNIT_ASSERT(index == indexOfMe);
+}
+
+void
 MoneyTest::testEqual()
 {
   // Set up
