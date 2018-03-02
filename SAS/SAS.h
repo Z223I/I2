@@ -37,6 +37,25 @@ int binary_search(MyArray ints, int number)
 
     start = 0;
     stop = ints.size() - 1;
+    mid = ints.size() / 2;
+
+    bool found = false;
+
+    do {
+      // start, stop and mid are known at the point for every iteration.
+      if (ints[mid] == number) return mid;
+
+      if (ints[mid] > number) {
+        // Look to the left half.
+        stop = mid;
+      }
+
+      if (ints[mid] < number) {
+        // Look to the right half.
+        start = mid;
+      }
+
+    } while (!found);
 
     int index = -1;
     return index;
