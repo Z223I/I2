@@ -91,7 +91,7 @@ MoneyTest::test_bubble_sort_A()
     Money money;
     money = Money();
 
-    result = money.bubble_sort();
+    result = money.bubble_sort(unsorted);
 
     CPPUNIT_ASSERT(result == sorted);
 }

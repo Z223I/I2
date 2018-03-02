@@ -77,8 +77,28 @@ public:
     return index;
   }
 
-  Money::MyArray5 bubble_sort() {
-    Money::MyArray5 arr = {5,4,3,2,1};
+  Money::MyArray5 bubble_sort(Money::MyArray5 _arr) {
+    Money::MyArray5 arr = _arr;
+    bool done;
+
+    do {
+      done = true;
+
+      // Step thru the array.
+      // We are checking two numbers at a time, so it is necessary to 
+      // subtract 1 from the array size.
+      for (int i=0; i<arr.size() - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+          int temp = arr[i];
+          arr[i] = arr[i + 1];
+          arr[i + 1] = temp;
+          done = false;
+        }
+
+      }
+
+    } while (!done);
+
     return arr;
   }
 
