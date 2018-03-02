@@ -5,6 +5,9 @@
 #include "SAS.h"
 #include "SASTest.h"
 
+#include <array>
+using namespace std;
+
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( MoneyTest );
 
@@ -76,6 +79,16 @@ MoneyTest::test_binary_search_B()
     cout << "indexOfMe: " << indexOfMe << endl;
   }
   CPPUNIT_ASSERT(index == indexOfMe);
+}
+
+void
+MoneyTest::test_bubble_sort_A()
+{
+    array<int, 5> unsorted = {5, 1, 4, 2, 8};
+    array<int, 5> sorted =   {1, 2, 4, 5, 8};
+    array<int, 5> result = unsorted;
+
+    CPPUNIT_ASSERT(result == sorted);
 }
 
 void

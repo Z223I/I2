@@ -29,7 +29,8 @@ public:
 
 #define MAX_INTS 10
 
-typedef array<int, MAX_INTS> MyArray;
+  typedef array<int, MAX_INTS> MyArray;
+  typedef array<int, 5> MyArray5;
 
   int binary_search(MyArray ints, int number) {
     int start, stop, mid;
