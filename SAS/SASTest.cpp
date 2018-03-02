@@ -38,11 +38,32 @@ MoneyTest::testConstructor()
 
 
 void
-MoneyTest::test_binary_search()
+MoneyTest::test_binary_search_A()
 {
   Money::MyArray numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
   int findMe = 4;
   int indexOfMe = 3;
+
+  Money money;
+  money = Money();
+
+  int index;
+  index = money.binary_search(numbers, findMe);
+
+  if (index != indexOfMe) {
+    cout << "index: " << index << endl;
+    cout << "indexOfMe: " << indexOfMe << endl;
+  }
+  CPPUNIT_ASSERT(index == indexOfMe);
+}
+
+
+void
+MoneyTest::test_binary_search_B()
+{
+  Money::MyArray numbers = { 1, 2, 4, 5, 7, 9, 10, 13, 15, 18 };
+  int findMe = 18;
+  int indexOfMe = 9;
 
   Money money;
   money = Money();
