@@ -122,6 +122,19 @@ public:
     return sorted;
   }
 
+  void merge(MyArray& _arr, int start, int middle, int stop) {
+    int start1 = start;
+    int stop1  = middle;
+    int start2 = middle + 1;
+    int stop2  = stop;
+
+    while (start1 <= stop1 && start2 <= stop2) {
+      stop1 += 1;
+    }
+
+    return;
+  }
+
   Money::MyArray5 merge_sort(Money::MyArray5 _arr) {
     Money::MyArray5 sorted = _arr;
     int i, j, key;
@@ -138,8 +151,12 @@ public:
       sorted[j + 1] = key;
     }  // for i
 
+/*
 
-    return sorted;
+                    Update the return...
+
+*/
+    return _arr;
   }
 
     double getAmount() const
