@@ -122,6 +122,26 @@ public:
     return sorted;
   }
 
+  Money::MyArray5 merge_sort(Money::MyArray5 _arr) {
+    Money::MyArray5 sorted = _arr;
+    int i, j, key;
+
+    for (i=1; i<sorted.size(); i++) {
+      key = sorted[i];
+      j = i - 1;
+
+      // Insert key into beginning of array which is already sorted.
+      while (j >= 0 && sorted[j] > key) {
+        sorted[j + 1] = sorted[j];
+        j -= 1;
+      }
+      sorted[j + 1] = key;
+    }  // for i
+
+
+    return sorted;
+  }
+
     double getAmount() const
   {
     return m_amount;
