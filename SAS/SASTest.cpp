@@ -96,6 +96,42 @@ MoneyTest::test_bubble_sort_A()
     CPPUNIT_ASSERT(result == sorted);
 }
 
+void cout_5(Money::MyArray5 _arr) {
+    cout << "{";
+
+    for (int i=0; i<_arr.size(); i++) {
+        cout << _arr[i];
+
+        if (i < _arr.size() - 1) {
+            cout << ", ";
+        }
+    }
+    cout << "}";
+}
+
+void
+MoneyTest::test_insertion_sort_A()
+{
+    Money::MyArray5 unsorted = {5, 1, 4, 2, 8};
+    Money::MyArray5 sorted =   {1, 2, 4, 5, 8};
+    Money::MyArray5 result = unsorted;
+
+    Money money;
+    money = Money();
+
+    result = money.insertion_sort(unsorted);
+
+    if (result != sorted) {
+        cout << "test_insertion_sort_A result: ";
+        cout_5(result);
+        cout << endl;
+        cout << "sorted: ";
+        cout_5(sorted);
+        cout << endl;
+    }
+    CPPUNIT_ASSERT(result == sorted);
+}
+
 void
 MoneyTest::testEqual()
 {

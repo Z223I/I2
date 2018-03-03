@@ -102,7 +102,38 @@ public:
     return arr;
   }
 
-  double getAmount() const
+  Money::MyArray5 insertion_sort(Money::MyArray5 _arr) {
+    Money::MyArray5 sorted = _arr;
+    int i, j, key;
+
+    for (i=1; i<sorted.size(); i++) {
+      key = sorted[i];
+
+      // Insert key into beginning of array which is already sorted.
+      for (j = i - 1; j >= 0; j--) {
+        if (j == 0) {
+          sorted[j] = key;
+          break;
+        }
+        if (sorted[j] > key) {
+          sorted[j + 1] = sorted[j];
+          //sorted[j] = key;
+          //break;
+        } else {
+          // sorted[j] < key assuming a set, i.e., no duplicates.
+          //sorted[j + 1] = sorted[j];
+          sorted[j + 1] = key;
+          break;
+        }
+      }  // for j
+
+    }  // for i
+
+
+    return sorted;
+  }
+
+    double getAmount() const
   {
     return m_amount;
   }
