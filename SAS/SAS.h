@@ -108,25 +108,14 @@ public:
 
     for (i=1; i<sorted.size(); i++) {
       key = sorted[i];
+      j = i - 1;
 
       // Insert key into beginning of array which is already sorted.
-      for (j = i - 1; j >= 0; j--) {
-        if (j == 0) {
-          sorted[j] = key;
-          break;
-        }
-        if (sorted[j] > key) {
-          sorted[j + 1] = sorted[j];
-          //sorted[j] = key;
-          //break;
-        } else {
-          // sorted[j] < key assuming a set, i.e., no duplicates.
-          //sorted[j + 1] = sorted[j];
-          sorted[j + 1] = key;
-          break;
-        }
-      }  // for j
-
+      while (j >= 0 && sorted[j] > key) {
+        sorted[j + 1] = sorted[j];
+        j -= 1;
+      }
+      sorted[j + 1] = key;
     }  // for i
 
 
