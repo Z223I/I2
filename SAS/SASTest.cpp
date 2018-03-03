@@ -135,14 +135,18 @@ MoneyTest::test_insertion_sort_A()
 void
 MoneyTest::test_merge_A()
 {
-    Money::MyArray5 unsorted = {5, 1, 4, 2, 8};
+    Money::MyArray5 unsorted = {1, 4, 8, 2, 5};
     Money::MyArray5 sorted =   {1, 2, 4, 5, 8};
     Money::MyArray5 result = unsorted;
 
     Money money;
     money = Money();
 
-    result = money.merge_sort(unsorted);
+    int start = 1;
+    int middle = 3;
+    int stop = 5;
+    money.merge(unsorted, start, middle, stop);
+    result = unsorted;
 
     if (result != sorted) {
         cout << "test_insertion_sort_A result: ";

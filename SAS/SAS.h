@@ -122,15 +122,38 @@ public:
     return sorted;
   }
 
-  void merge(MyArray& _arr, int start, int middle, int stop) {
+  void merge(MyArray5& _arr, int start, int middle, int stop) {
     int start1 = start;
     int stop1  = middle;
     int start2 = middle + 1;
     int stop2  = stop;
 
-    while (start1 <= stop1 && start2 <= stop2) {
-      stop1 += 1;
+    MyArray5 arr = { -1 };
+    int arr_index = 0;
+
+    while (start1 <= stop1 || start2 <= stop2) {
+      bool step_done = false;
+
+      if (start1 <= stop1) {
+        if (_arr[start1] <= _arr[start2]) {
+          arr[arr_index] = _arr[start1];
+          start1 += 1;
+          arr_index += 1;
+          step_done = true;
+        }
+      }
+
+      if (!step_done && start2 <= stop2) {
+        if (_arr[start2] < _arr[start1]) {
+          arr[arr_index] = _arr[start2];
+          start2 += 1;
+          arr_index += 1;
+          step_done = true;
+        }
+      }
     }
+
+    _arr = arr;
 
     return;
   }
