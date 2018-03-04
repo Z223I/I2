@@ -145,10 +145,6 @@ public:
         }
     }
 
-    cout << endl;
-    cout << "Step 1 finished." << endl;
-    //cout << arr << endl; This doesn't compile.
-
     uint i;
 
     // Copy anything remaining in the left side array.

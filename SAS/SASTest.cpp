@@ -112,7 +112,8 @@ void cout_5(Money::MyArray5 _arr) {
 void
 MoneyTest::test_insertion_sort_A()
 {
-/*
+//#define TEST_INSERTION_SORT_A
+#ifdef TEST_INSERTION_SORT_A
     Money::MyArray5 unsorted = {5, 1, 4, 2, 8};
     Money::MyArray5 sorted =   {1, 2, 4, 5, 8};
     Money::MyArray5 result = unsorted;
@@ -131,7 +132,7 @@ MoneyTest::test_insertion_sort_A()
         cout << endl;
     }
     CPPUNIT_ASSERT(result == sorted);
-*/
+#endif
 }
 
 void
