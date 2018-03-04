@@ -150,7 +150,8 @@ MoneyTest::test_merge_A()
     int start = 0;
     int middle = 2;
     int stop = 4;
-    result = money.merge(unsorted, start, middle, stop);
+    money.merge(unsorted, start, middle, stop);
+    result = unsorted;
 
     if (result != sorted) {
         cout << endl << ">>>test_merge_A result: ";

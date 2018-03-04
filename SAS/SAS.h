@@ -123,7 +123,7 @@ public:
     return sorted;
   }
 
-  MyArray5 merge(MyArray5 &_arr, uint start, uint middle, uint stop) {
+  void merge(MyArray5 &_arr, uint start, uint middle, uint stop) {
 
     uint start1 = start;
     uint stop1  = middle;
@@ -161,7 +161,7 @@ public:
     
     _arr = arr;
 
-    return arr;
+    return;
   }
 
   void merge_sort(Money::MyArray5& _arr) {
@@ -181,7 +181,7 @@ public:
       sorted[j + 1] = key;
     }  // for i
 
-  _arr = sorted;
+    _arr = sorted;
 
     return;
   }
