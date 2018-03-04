@@ -87,7 +87,7 @@ public:
       // Step thru the array.
       // We are checking two numbers at a time, so it is necessary to 
       // subtract 1 from the array size.
-      for (int i=0; i<arr.size() - 1; i++) {
+      for (uint i=0; i<arr.size() - 1; i++) {
         if (arr[i] > arr[i + 1]) {
           int temp = arr[i];
           arr[i] = arr[i + 1];
@@ -104,7 +104,8 @@ public:
 
   Money::MyArray5 insertion_sort(Money::MyArray5 _arr) {
     Money::MyArray5 sorted = _arr;
-    int i, j, key;
+    uint i, j;
+    int key;
 
     for (i=1; i<sorted.size(); i++) {
       key = sorted[i];
@@ -122,45 +123,55 @@ public:
     return sorted;
   }
 
-  void merge(MyArray5& _arr, int start, int middle, int stop) {
-    int start1 = start;
-    int stop1  = middle;
-    int start2 = middle + 1;
-    int stop2  = stop;
+  MyArray5 merge(MyArray5 _arr, uint start, uint middle, uint stop) {
 
-    MyArray5 arr = { -1 };
+    uint start1 = start;
+    uint stop1  = middle;
+    uint start2 = middle + 1;
+    uint stop2  = stop;
+
+    MyArray5 arr = { -1, -1, -1, -1, -1 };
     int arr_index = 0;
+    while (start1 <= stop1 && start2 <= stop2) {
 
-    while (start1 <= stop1 || start2 <= stop2) {
-      bool step_done = false;
-
-      if (start1 <= stop1) {
         if (_arr[start1] <= _arr[start2]) {
           arr[arr_index] = _arr[start1];
-          start1 += 1;
-          arr_index += 1;
-          step_done = true;
-        }
-      }
-
-      if (!step_done && start2 <= stop2) {
-        if (_arr[start2] < _arr[start1]) {
+          start1++;
+          arr_index++;
+        } else {
           arr[arr_index] = _arr[start2];
-          start2 += 1;
-          arr_index += 1;
-          step_done = true;
+          start2++;
+          arr_index++;
         }
-      }
     }
 
+    cout << endl;
+    cout << "Step 1 finished." << endl;
+    //cout << arr << endl; This doesn't compile.
+
+    uint i;
+
+    // Copy anything remaining in the left side array.
+    for (i=start1; i <= stop1; i++) {
+      arr[arr_index] = _arr[i];
+      arr_index++;
+    }
+
+    // Copy anything remaining in the right side array.
+    for (i=start2; i <= stop2; i++) {
+      arr[arr_index] = _arr[i];
+      arr_index++;
+    }
+    
     _arr = arr;
 
-    return;
+    return arr;
   }
 
-  Money::MyArray5 merge_sort(Money::MyArray5 _arr) {
+  void merge_sort(Money::MyArray5& _arr) {
     Money::MyArray5 sorted = _arr;
-    int i, j, key;
+    uint i, j;
+    int key;
 
     for (i=1; i<sorted.size(); i++) {
       key = sorted[i];
@@ -174,12 +185,9 @@ public:
       sorted[j + 1] = key;
     }  // for i
 
-/*
+  _arr = sorted;
 
-                    Update the return...
-
-*/
-    return _arr;
+    return;
   }
 
     double getAmount() const

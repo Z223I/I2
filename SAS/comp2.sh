@@ -1,2 +1,2 @@
-g++ -std=c++11 -lcppunit -L/usr/local/lib SASApp.cpp SASTest.cpp
+g++ -g -Wall -Werror -std=c++11 -lcppunit SASApp.cpp SASTest.cpp -o SAS.x
 
