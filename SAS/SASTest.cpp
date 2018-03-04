@@ -172,7 +172,7 @@ MoneyTest::test_merge_A()
 void
 MoneyTest::test_merge_sort_A()
 {
-/*
+
     Money::MyArray5 unsorted = {5, 1, 4, 2, 8};
     Money::MyArray5 sorted =   {1, 2, 4, 5, 8};
     Money::MyArray5 result = unsorted;
@@ -180,11 +180,14 @@ MoneyTest::test_merge_sort_A()
     Money money;
     money = Money();
 
-    money.merge_sort(unsorted);
+    uint start = 0;
+    uint stop = unsorted.size() - 1;
+
+    money.merge_sort(unsorted, start, stop);
     result = unsorted;
 
     if (result != sorted) {
-        cout << "test_insertion_sort_A result: ";
+        cout << "test_merge_sort_A result: ";
         cout_5(result);
         cout << endl;
         cout << "sorted: ";
@@ -192,7 +195,7 @@ MoneyTest::test_merge_sort_A()
         cout << endl;
     }
     CPPUNIT_ASSERT(result == sorted);
-*/
+
 }
 
 void

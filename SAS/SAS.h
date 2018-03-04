@@ -164,24 +164,22 @@ public:
     return;
   }
 
-  void merge_sort(Money::MyArray5& _arr) {
-    Money::MyArray5 sorted = _arr;
-    uint i, j;
-    int key;
+  void merge_sort(Money::MyArray5& _arr, const uint _start, const uint _stop) {
+    // Is there more than one element to process.
+    if (_stop > _start) {
+      // Find the middle index.
+      uint middle = (_start + _stop) / 2;
 
-    for (i=1; i<sorted.size(); i++) {
-      key = sorted[i];
-      j = i - 1;
+      // Call merge_sort for left side of the array.
+      merge_sort(_arr, _start, middle);
 
-      // Insert key into beginning of array which is already sorted.
-      while (j >= 0 && sorted[j] > key) {
-        sorted[j + 1] = sorted[j];
-        j -= 1;
-      }
-      sorted[j + 1] = key;
-    }  // for i
+      // Call merge_sort for right side of the array.
+      merge_sort(_arr, middle + 1, _stop);
 
-    _arr = sorted;
+      // Merge the two arrays.
+      merge(_arr, _start, middle, _stop);
+
+    }
 
     return;
   }
