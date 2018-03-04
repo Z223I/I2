@@ -140,9 +140,15 @@ MoneyTest::test_merge_A()
 {
 #define TEST_MERGE_A
 #if defined(TEST_MERGE_A)
-    Money::MyArray5 unsorted = {1, 4, 8, 2, 5};
-    Money::MyArray5 sorted =   {1, 2, 4, 5, 8};
-    Money::MyArray5 result = { 0 };
+
+#define ARRAY_SIZE 5
+    array<int, ARRAY_SIZE> unsorted = {1, 4, 8, 2, 5};
+    array<int, ARRAY_SIZE> sorted   = {1, 2, 4, 5, 8};
+    array<int, ARRAY_SIZE> result;
+
+    for (uint i=0; i<ARRAY_SIZE; i++) {
+        result[i] = -1;
+    }
 
     Money money;
     money = Money();
