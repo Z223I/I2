@@ -123,7 +123,7 @@ public:
     return sorted;
   }
 
-  MyArray5 merge(MyArray5 _arr, uint start, uint middle, uint stop) {
+  MyArray5 merge(MyArray5 &_arr, uint start, uint middle, uint stop) {
 
     uint start1 = start;
     uint stop1  = middle;

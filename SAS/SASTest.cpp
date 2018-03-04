@@ -160,6 +160,7 @@ MoneyTest::test_merge_A()
         cout_5(sorted);
         cout << endl;
     }
+    CPPUNIT_ASSERT(result == unsorted); // Checking pass by reference.
     CPPUNIT_ASSERT(result == sorted);
 #endif
 }
