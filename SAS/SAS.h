@@ -130,8 +130,8 @@ public:
     uint start2 = middle + 1;
     uint stop2  = stop;
 
-    MyArray5 arr = { -1, -1, -1, -1, -1 };
-    int arr_index = 0;
+    MyArray5 arr = _arr;
+    int arr_index = start;
     while (start1 <= stop1 && start2 <= stop2) {
 
         if (_arr[start1] <= _arr[start2]) {
