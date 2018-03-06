@@ -1,23 +1,54 @@
+#include <assert.h>
 #include <iostream>
 using namespace std;
 
 
 class FunctionStream {
-private:
-    int    iParameterCounter;
-    bool bBEENInitialized;  // Parameters been initialized?
-    bool bParallelExecution;   // Execute in Parallel?
-    string    param_psz; // Default string parameter;
-    long int     param_dw; // Default long integer parameter;
-    short int param_w; // Default short integer parameter;
-    double    param_d; // Default double parameter;
-    float    param_f; // Default float parameter;
+protected:
+    int       iParameterCounter;
+    bool      bBEENInitialized;    // Parameters been initialized?
+    bool      bParallelExecution;  // Execute in Parallel?
+    string    param_s;             // Default string parameter;
+    long int  param_dw;            // Default long integer parameter;
+    short int param_w;             // Default short integer parameter;
+    double    param_d;             // Default double parameter;
+    float     param_f;            // Default float parameter;
+
 public:
-    virtual FunctionStream& operator<<(string psz);
+    virtual FunctionStream& operator<<(string s);
+    // char[]???
     virtual FunctionStream& operator<<(long int dw);
     virtual FunctionStream& operator<<(short int w);
     virtual FunctionStream& operator<<(double d);
     virtual FunctionStream& operator<<(float f);
+};
+
+
+FunctionStream& FunctionStream::operator<<(string s) {
+    iParameterCounter = iParameterCounter + 1;
+    param_s = s;
+    return *this;
+};
+
+
+FunctionStream& FunctionStream::operator<<(long int dw) {
+    iParameterCounter = iParameterCounter + 1;
+    param_dw = dw;
+    return *this;
+};
+
+
+FunctionStream& FunctionStream::operator<<(short int w) {
+    iParameterCounter = iParameterCounter + 1;
+    param_w = w;
+    return *this;
+};
+
+
+FunctionStream& FunctionStream::operator<<(double d) {
+    iParameterCounter = iParameterCounter + 1;
+    param_d = d;
+    return *this;
 };
 
 
@@ -27,9 +58,7 @@ FunctionStream& FunctionStream::operator<<(float f) {
     return *this;
 };
 
-#ifdef USE_ME
-
-class DerivedFunctionStream {
+class DerivedFunctionStream : FunctionStream {
 private:
     float param_weight;
     float param_weight_start;
@@ -49,9 +78,9 @@ public:
     float EXECUTE();
     float PARALLEL_EXECUTE();
     void prompts();
-}
+};
 
-DerivedFunctionStream::operator<<(int i) {
+DerivedFunctionStream& DerivedFunctionStream::operator<<(int i) {
     iParameterCounter = iParameterCounter + 1;
     switch (iParameterCounter) {
         case 2:
@@ -59,7 +88,7 @@ DerivedFunctionStream::operator<<(int i) {
             return *this;
             break;
         default:
-            assert(FALSE);
+            assert(false);
     }
 }
 
@@ -68,16 +97,19 @@ DerivedFunctionStream& DerivedFunctionStream::operator<<(float f) {
     switch (iParameterCounter) {
         case 1:
             param_weight = f;
-            return *this;
             break;
         default:
-            assert(FALSE);
+            assert(false);
     }
+    return *this;
 }
 
 DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
     f = fFuelRequired;
+    return *this;
 }
+
+#ifdef USE_ME
 
 float DerivedFunctionStream:EXECUTE() {
 
@@ -91,6 +123,7 @@ f(param_weight, param_planet, &fuel_required);
 
 return fFuelRequired;
 }
+
 
 float DerivedFunctionStream:PARALLEL_EXECUTE() {
 
