@@ -6,13 +6,13 @@ using namespace std;
 class FunctionStream {
 protected:
     int       iParameterCounter;
-    bool      bBEENInitialized;    // Parameters been initialized?
+    bool      bBeenInitialized;    // Parameters been initialized?
     bool      bParallelExecution;  // Execute in Parallel?
     string    param_s;             // Default string parameter;
     long int  param_dw;            // Default long integer parameter;
     short int param_w;             // Default short integer parameter;
     double    param_d;             // Default double parameter;
-    float     param_f;            // Default float parameter;
+    float     param_f;             // Default float parameter;
 
 public:
     virtual FunctionStream& operator<<(string s);
@@ -90,7 +90,7 @@ DerivedFunctionStream& DerivedFunctionStream::operator<<(int i) {
         default:
             assert(false);
     }
-}
+};
 
 DerivedFunctionStream& DerivedFunctionStream::operator<<(float f) {
     iParameterCounter = iParameterCounter + 1;
@@ -102,36 +102,39 @@ DerivedFunctionStream& DerivedFunctionStream::operator<<(float f) {
             assert(false);
     }
     return *this;
-}
+};
 
 DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
     f = fFuelRequired;
     return *this;
-}
+};
 
-#ifdef USE_ME
-
-float DerivedFunctionStream:EXECUTE() {
+float DerivedFunctionStream::EXECUTE() {
 
 // Check if weight and planet have not been initialized.
-if ( not(bBeenInitialized) ) {
-     bParallelExecution = false;
+if ( not(this->bBeenInitialized) ) {
+    bParallelExecution = false;
     prompts();
-}
+};
 
-f(param_weight, param_planet, &fuel_required);
+float fFuelRequired;
+
+//f(param_weight, param_planet, &fuel_required);
+fFuelRequired = param_weight * param_planet;
 
 return fFuelRequired;
-}
+};
 
 
-float DerivedFunctionStream:PARALLEL_EXECUTE() {
+float DerivedFunctionStream::PARALLEL_EXECUTE() {
 
 // Check if weight and planet have not been initialized.
 if ( not(bBeenInitialized) ) {
      bParallelExecution = true;
     prompts();
-}
+};
+
+#ifdef USE_ME
 FxVariable weight(param_weight_start, param_weight_stop,
                   param_weight_step);
 FxVariable planet(param_planet_start, param_planet_stop,
@@ -144,17 +147,25 @@ MyFxVars.add(planet);
 BOOL bFinished = FALSE;
 do {
 
-     spawn(f, MyFxVars, fFuelRequiredArray);
+    spawn(f, MyFxVars, fFuelRequiredArray);
     Object = firstThat(HasNotReachedUpperbound, MyFxVars);
 
      if (Object == null ) { bFinished = TRUE; }
 
 } while ( !bFinished );
 
+#endif
+
+float fFuelRequiredArray = 0;
 return fFuelRequiredArray;
-}
+};
 
 void DerivedFunctionStream::prompts() {
+    //ostream os;
+    //istream is;
+#define os cout
+#define is cin
+
     if (bParallelExecution == true) {
         os << endl << "Enter mission weight";
         os << endl << "Start";
@@ -177,8 +188,7 @@ void DerivedFunctionStream::prompts() {
         os << endl << "Enter destination planet:";
         is >> param_planet;
      }
-}
-#endif
+};
 
 int main() {
 
@@ -191,4 +201,4 @@ int main() {
     cout << weight << planet;
 
     return 0;
-}
+};
