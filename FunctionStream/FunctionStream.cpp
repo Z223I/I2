@@ -15,7 +15,10 @@ protected:
     float     param_f;             // Default float parameter;
 
 public:
-    virtual FunctionStream& operator<<(string s);
+    FunctionStream();
+    ~FunctionStream();
+
+    virtual FunctionStream& operator<<(const char* s);
     // char[]???
     virtual FunctionStream& operator<<(long int dw);
     virtual FunctionStream& operator<<(short int w);
@@ -24,7 +27,16 @@ public:
 };
 
 
-FunctionStream& FunctionStream::operator<<(string s) {
+FunctionStream::FunctionStream() {
+}
+
+
+FunctionStream::~FunctionStream() {
+}
+
+
+
+FunctionStream& FunctionStream::operator<<(const char* s) {
     iParameterCounter = iParameterCounter + 1;
     param_s = s;
     return *this;
@@ -75,10 +87,18 @@ public:
     DerivedFunctionStream& operator<<(int i);
     DerivedFunctionStream& operator<<(float f);
     DerivedFunctionStream& operator>>(float &f);
-    float EXECUTE();
+    DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs);
     float PARALLEL_EXECUTE();
     void prompts();
 };
+
+
+DerivedFunctionStream::DerivedFunctionStream() : FunctionStream() {
+}
+
+
+DerivedFunctionStream::~DerivedFunctionStream() {
+}
 
 DerivedFunctionStream& DerivedFunctionStream::operator<<(int i) {
     iParameterCounter = iParameterCounter + 1;
@@ -109,7 +129,7 @@ DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
     return *this;
 };
 
-float DerivedFunctionStream::EXECUTE() {
+DerivedFunctionStream& DerivedFunctionStream::EXECUTE(DerivedFunctionStream& dfs) {
 
 // Check if weight and planet have not been initialized.
 if ( not(this->bBeenInitialized) ) {
@@ -117,12 +137,12 @@ if ( not(this->bBeenInitialized) ) {
     prompts();
 };
 
-float fFuelRequired;
+//float fFuelRequired;
 
 //f(param_weight, param_planet, &fuel_required);
-fFuelRequired = param_weight * param_planet;
+//fFuelRequired = param_weight * param_planet;
 
-return fFuelRequired;
+return dfs;
 };
 
 
@@ -192,13 +212,13 @@ void DerivedFunctionStream::prompts() {
 
 int main() {
 
-    float    weight = 0;
-    int      planet = 0;
-//    DerivedFuntionStream f;
+//    float    weight = 0;
+//    int      planet = 0;
+    DerivedFunctionStream f;
 
-//    f << EXECUTE;
+    f << 7;
 
-    cout << weight << planet;
+ //   cout << weight << planet;
 
     return 0;
 };
