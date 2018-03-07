@@ -236,7 +236,10 @@ int main() {
 //#define EXECUTE DerivedFunctionStream::EXECUTE
     f << 8.0 << 7 << EXECUTE;
 
- //   cout << weight << planet;
+    int fuel = 0;
+    //f >> fuel;
+
+    cout << "Fuel: " << fuel << endl;
 
     return 0;
 };
