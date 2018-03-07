@@ -84,7 +84,7 @@ private:
     int param_planet_start;
     int param_planet_stop;
     int param_planet_step;
-    float fFuelRequired;
+    int fFuelRequired;
 public:
     DerivedFunctionStream();
     ~DerivedFunctionStream();
@@ -135,7 +135,8 @@ DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
     return *this;
 };
 
-void f() {
+void f(int param_weight, int param_planet, int &fuel_required) {
+    fuel_required = param_weight * param_planet;
     cout << "Hello World!" << endl;
 }
 
@@ -144,32 +145,19 @@ DerivedFunctionStream& DerivedFunctionStream::EXECUTE(DerivedFunctionStream& dfs
 // Check if weight and planet have not been initialized.
 if ( not(this->bBeenInitialized) ) {
     bParallelExecution = false;
-//    prompts();
+    prompts();
 };
 
-//float fFuelRequired;
+    //float fFuelRequired;
 
-f();
-//f(param_weight, param_planet, &fuel_required);
+    f(param_weight, param_planet, fFuelRequired);
 //fFuelRequired = param_weight * param_planet;
 
 return dfs;
 };
 
 DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs) {
-
-// Check if weight and planet have not been initialized.
-//f ( not(this->bBeenInitialized) ) {
-//    bParallelExecution = false;
-//    prompts();
-//};
-
-//float fFuelRequired;
-
-//f(param_weight, param_planet, &fuel_required);
-//fFuelRequired = param_weight * param_planet;
-
-return dfs.EXECUTE(dfs);
+    return dfs.EXECUTE(dfs);
 };
 
 DerivedFunctionStream& DerivedFunctionStream::operator<<(DerivedFunctionStream& (*m)(DerivedFunctionStream&)) {
@@ -233,9 +221,9 @@ void DerivedFunctionStream::prompts() {
         os << endl << "Increment";
         is >> param_planet_step;
     } else {
-        os << endl << "Enter mission weight:";
+        os << endl << "Enter mission weight: ";
         is >> param_weight;
-        os << endl << "Enter destination planet:";
+        os << endl << "Enter destination planet: ";
         is >> param_planet;
      }
 };
