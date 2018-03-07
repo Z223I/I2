@@ -138,10 +138,10 @@ DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
 DerivedFunctionStream& DerivedFunctionStream::EXECUTE(DerivedFunctionStream& dfs) {
 
 // Check if weight and planet have not been initialized.
-//f ( not(this->bBeenInitialized) ) {
-//    bParallelExecution = false;
+if ( not(this->bBeenInitialized) ) {
+    bParallelExecution = false;
 //    prompts();
-//};
+};
 
 //float fFuelRequired;
 
