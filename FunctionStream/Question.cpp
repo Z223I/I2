@@ -21,7 +21,6 @@ public:
     DerivedFStream();
     ~DerivedFStream();
     static DerivedFStream& my_endl(DerivedFStream& dfs);
-    DerivedFStream& operator<<(DerivedFStream& (*m)(DerivedFStream&));
 };
 
 
@@ -36,11 +35,6 @@ DerivedFStream& DerivedFStream::my_endl(DerivedFStream& dfs) {
 
 return dfs;
 };
-
-DerivedFStream& DerivedFStream::operator<<(DerivedFStream& (*m)(DerivedFStream&)) {
-    return (*m)(*this);
-};
-
 
 int main() {
     DerivedFStream f = DerivedFStream();

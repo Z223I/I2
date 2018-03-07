@@ -8,7 +8,7 @@ protected:
     int       iParameterCounter;
     bool      bBeenInitialized;    // Parameters been initialized?
     bool      bParallelExecution;  // Execute in Parallel?
-    string    param_s;             // Default string parameter;
+    const char*    param_s;             // Default string parameter;
     long int  param_dw;            // Default long integer parameter;
     short int param_w;             // Default short integer parameter;
     double    param_d;             // Default double parameter;
@@ -18,12 +18,14 @@ public:
     FunctionStream();
     ~FunctionStream();
 
-    virtual FunctionStream& operator<<(const char* s);
+    //virtual FunctionStream& operator<<(const char* s);
     // char[]???
-    virtual FunctionStream& operator<<(long int dw);
-    virtual FunctionStream& operator<<(short int w);
-    virtual FunctionStream& operator<<(double d);
-    virtual FunctionStream& operator<<(float f);
+    //virtual FunctionStream& operator<<(long int dw);
+    //virtual FunctionStream& operator<<(short int w);
+    //virtual FunctionStream& operator<<(double d);
+    //virtual FunctionStream& operator<<(float f);
+
+    //virtual FunctionStream& EXECUTE(FunctionStream&) = 0;
 };
 
 
@@ -35,7 +37,7 @@ FunctionStream::~FunctionStream() {
 }
 
 
-
+/*
 FunctionStream& FunctionStream::operator<<(const char* s) {
     iParameterCounter = iParameterCounter + 1;
     param_s = s;
@@ -69,6 +71,7 @@ FunctionStream& FunctionStream::operator<<(float f) {
     param_f = f;
     return *this;
 };
+*/
 
 class DerivedFunctionStream : FunctionStream {
 private:
@@ -85,9 +88,10 @@ public:
     DerivedFunctionStream();
     ~DerivedFunctionStream();
     DerivedFunctionStream& operator<<(int i);
-    DerivedFunctionStream& operator<<(float f);
+    DerivedFunctionStream& operator<<(double f);
     DerivedFunctionStream& operator>>(float &f);
-    DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs);
+    static DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs);
+    DerivedFunctionStream& operator<<(DerivedFunctionStream& (*m)(DerivedFunctionStream&));
     float PARALLEL_EXECUTE();
     void prompts();
 };
@@ -105,14 +109,15 @@ DerivedFunctionStream& DerivedFunctionStream::operator<<(int i) {
     switch (iParameterCounter) {
         case 2:
             param_planet = i;
-            return *this;
             break;
         default:
             assert(false);
     }
+
+    return *this;
 };
 
-DerivedFunctionStream& DerivedFunctionStream::operator<<(float f) {
+DerivedFunctionStream& DerivedFunctionStream::operator<<(double f) {
     iParameterCounter = iParameterCounter + 1;
     switch (iParameterCounter) {
         case 1:
@@ -132,10 +137,10 @@ DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
 DerivedFunctionStream& DerivedFunctionStream::EXECUTE(DerivedFunctionStream& dfs) {
 
 // Check if weight and planet have not been initialized.
-if ( not(this->bBeenInitialized) ) {
-    bParallelExecution = false;
-    prompts();
-};
+//f ( not(this->bBeenInitialized) ) {
+//    bParallelExecution = false;
+//    prompts();
+//};
 
 //float fFuelRequired;
 
@@ -145,6 +150,9 @@ if ( not(this->bBeenInitialized) ) {
 return dfs;
 };
 
+DerivedFunctionStream& DerivedFunctionStream::operator<<(DerivedFunctionStream& (*m)(DerivedFunctionStream&)) {
+    return  (*m)(*this);
+};
 
 float DerivedFunctionStream::PARALLEL_EXECUTE() {
 
@@ -216,7 +224,7 @@ int main() {
 //    int      planet = 0;
     DerivedFunctionStream f;
 
-    f << 7;
+    f << 8.0 << 7 << DerivedFunctionStream::EXECUTE;
 
  //   cout << weight << planet;
 
