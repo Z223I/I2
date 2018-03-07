@@ -135,6 +135,10 @@ DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
     return *this;
 };
 
+void f() {
+    cout << "Hello World!" << endl;
+}
+
 DerivedFunctionStream& DerivedFunctionStream::EXECUTE(DerivedFunctionStream& dfs) {
 
 // Check if weight and planet have not been initialized.
@@ -145,6 +149,7 @@ if ( not(this->bBeenInitialized) ) {
 
 //float fFuelRequired;
 
+f();
 //f(param_weight, param_planet, &fuel_required);
 //fFuelRequired = param_weight * param_planet;
 
