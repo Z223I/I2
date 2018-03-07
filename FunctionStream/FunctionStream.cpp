@@ -91,7 +91,7 @@ public:
     DerivedFunctionStream& operator<<(int i);
     DerivedFunctionStream& operator<<(double f);
     DerivedFunctionStream& operator>>(float &f);
-    static DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs);
+    DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs);
     DerivedFunctionStream& operator<<(DerivedFunctionStream& (*m)(DerivedFunctionStream&));
     float PARALLEL_EXECUTE();
     void prompts();
@@ -164,7 +164,7 @@ DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs) {
 //f(param_weight, param_planet, &fuel_required);
 //fFuelRequired = param_weight * param_planet;
 
-return dfs;
+return dfs.EXECUTE(dfs);
 };
 
 DerivedFunctionStream& DerivedFunctionStream::operator<<(DerivedFunctionStream& (*m)(DerivedFunctionStream&)) {
@@ -240,7 +240,7 @@ int main() {
 //    float    weight = 0;
 //    int      planet = 0;
     DerivedFunctionStream f;
-#define EXECUTE DerivedFunctionStream::EXECUTE
+//#define EXECUTE DerivedFunctionStream::EXECUTE
     f << 8.0 << 7 << EXECUTE;
 
  //   cout << weight << planet;
