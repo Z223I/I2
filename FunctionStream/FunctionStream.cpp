@@ -30,6 +30,7 @@ public:
 
 
 FunctionStream::FunctionStream() {
+    iParameterCounter = 0;
 }
 
 
