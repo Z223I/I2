@@ -91,7 +91,7 @@ public:
     DerivedFunctionStream& operator<<(int i);
     DerivedFunctionStream& operator<<(double f);
     DerivedFunctionStream& operator>>(float &f);
-    static DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs);
+    //static DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs);
     DerivedFunctionStream& operator<<(DerivedFunctionStream& (*m)(DerivedFunctionStream&));
     float PARALLEL_EXECUTE();
     void prompts();
@@ -135,7 +135,7 @@ DerivedFunctionStream& DerivedFunctionStream::operator>>(float &f) {
     return *this;
 };
 
-DerivedFunctionStream& DerivedFunctionStream::EXECUTE(DerivedFunctionStream& dfs) {
+DerivedFunctionStream& EXECUTE(DerivedFunctionStream& dfs) {
 
 // Check if weight and planet have not been initialized.
 //f ( not(this->bBeenInitialized) ) {
@@ -224,8 +224,8 @@ int main() {
 //    float    weight = 0;
 //    int      planet = 0;
     DerivedFunctionStream f;
-
-    f << 8.0 << 7 << DerivedFunctionStream::EXECUTE;
+//#define EXECUTE DerivedFunctionStream::EXECUTE
+    f << 8.0 << 7 << EXECUTE;
 
  //   cout << weight << planet;
 
