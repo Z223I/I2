@@ -6,10 +6,10 @@ using namespace std;
 
 class DerivedFunctionStream : FunctionStream {
 private:
-    float param_weight;
-    float param_weight_start;
-    float param_weight_stop;
-    float param_weight_step;
+    int param_weight;
+    int param_weight_start;
+    int param_weight_stop;
+    int param_weight_step;
     int param_planet;
     int param_planet_start;
     int param_planet_stop;

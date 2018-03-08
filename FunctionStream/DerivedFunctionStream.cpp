@@ -1,8 +1,10 @@
 #include <assert.h>
 #include <iostream>
+#include <array>
 using namespace std;
 
 #include "DerivedFunctionStream.h"
+#include "FxLoop.h"
 
 DerivedFunctionStream::DerivedFunctionStream() : FunctionStream() {
 }
@@ -74,21 +76,22 @@ if ( not(bBeenInitialized) ) {
     prompts();
 };
 
+FxLoop weight(param_weight_start, param_weight_stop,
+                  param_weight_step, "weight");
+FxLoop planet(param_planet_start, param_planet_stop,
+                  param_planet_step, "planet" );
+//Array MyFxLoops(1, 0);
+array<FxLoop, 2> MyFxLoops;
+
+MyFxLoops[0] = weight;
+MyFxLoops[1] = planet;
+
 #ifdef USE_ME
-FxVariable weight(param_weight_start, param_weight_stop,
-                  param_weight_step);
-FxVariable planet(param_planet_start, param_planet_stop,
-                  param_planet_step );
-Array MyFxVars(1, 0);
-
-MyFxVars.add(weight);
-MyFxVars.add(planet);
-
 BOOL bFinished = FALSE;
 do {
 
-    spawn(f, MyFxVars, fFuelRequiredArray);
-    Object = firstThat(HasNotReachedUpperbound, MyFxVars);
+    spawn(f, MyFxLoops, fFuelRequiredArray);
+    Object = firstThat(HasNotReachedUpperbound, MyFxLoops);
 
      if (Object == null ) { bFinished = TRUE; }
 
