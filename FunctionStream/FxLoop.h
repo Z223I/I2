@@ -11,8 +11,10 @@ using namespace std;  // std c++ libs implemented in std
 class FxLoop
 {
 public:
+	int iStart;
+    int iStop;
+    int iStep;
     string Name;
-	int iStart, iStep, iStop;
 	int iCurrentValue;
     int NumberOfSteps;
 

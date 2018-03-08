@@ -33,10 +33,10 @@
 
 
 FxLoop::FxLoop() : 
-		Name(""), 
 		iStart(0),
-		iStep(0),
 		iStop(0),
+		iStep(0),
+		Name(""), 
 
 #ifdef INCLUDE_FULL_CODE
 		bVariable(false),
@@ -48,7 +48,8 @@ FxLoop::FxLoop() :
 };
 
 FxLoop::FxLoop(int _iStart, int _iStop, int _iStep, string _sVariableName) 
-	: iStart(_iStart), iStop(_iStop), iStep(_iStep), Name(_sVariableName), iCurrentValue(_iStart)
+	: iStart(_iStart), iStop(_iStop), iStep(_iStep), Name(_sVariableName)
+//	: iStart(_iStart), iStop(_iStop), iStep(_iStep)
 {
 	
 	iCurrentValue = iStart;
