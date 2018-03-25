@@ -234,7 +234,7 @@ void
 MoneyTest::test_qs_partition_B()
 {
 
-    Money::MyArray5 unpartitioned = {5, 1, 8, 2, 4};
+    array<int, 5> unpartitioned = {5, 1, 8, 2, 4};
     Money::MyArray5 partitioned =   {1, 2, 4, 5, 8};
     Money::MyArray5 result;
 
