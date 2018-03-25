@@ -17,7 +17,7 @@ public:
     string Name;
 	int iCurrentValue;
     int NumberOfSteps;
-
+#define INCLUDE_FULL_CODE
 #ifdef INCLUDE_FULL_CODE
 	bool bVariable;
 	bool bValid;

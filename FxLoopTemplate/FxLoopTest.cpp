@@ -29,7 +29,6 @@
 // The debugger can't handle symbols more than 255 characters long.
 // STL often creates symbols longer than that.
 // When symbols are longer than 255 characters, the warning is disabled.
-#pragma warning(disable:4786)
 
 #include <iostream>
 #include <vector>
@@ -44,7 +43,7 @@ using namespace std;
 
 
 
-
+#define INCLUDE_THIS
 #ifdef INCLUDE_THIS
 
 bool HasNotReachedUpperBound (FxLoop<int>& _myFxLoop) {
@@ -54,7 +53,8 @@ bool HasNotReachedUpperBound (FxLoop<int>& _myFxLoop) {
 }
 
 int analyze(vector<FxLoop<int>>& _MyFxLoops) {
-	vector<FxLoop>::iterator myFxLoopsIter;
+//	vector<FxLoop>::const_iterator myFxLoopsIter;
+	vector<int>::const_iterator myFxLoopsIter;
 	
 	FxLoop<int> myFxLoop;
 
@@ -97,7 +97,7 @@ typedef vector<FxLoop<int>, allocator<FxLoop<int>> > NAMEVECTOR;
 
 #endif
 
-void main()
+int main()
 {
 
 

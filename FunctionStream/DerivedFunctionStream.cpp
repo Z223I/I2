@@ -85,17 +85,19 @@ array<FxLoop, 2> MyFxLoops;
 
 MyFxLoops[0] = weight;
 MyFxLoops[1] = planet;
+FxLoop Object;
 
-#ifdef USE_ME
-BOOL bFinished = FALSE;
+//#ifdef USE_ME
+bool bFinished = false;
 do {
 
-    spawn(f, MyFxLoops, fFuelRequiredArray);
+    //spawn(f, MyFxLoops, fFuelRequiredArray);
     Object = firstThat(HasNotReachedUpperbound, MyFxLoops);
 
-     if (Object == null ) { bFinished = TRUE; }
+        if (Object == null ) { bFinished = true; }
 
 } while ( !bFinished );
+#ifdef USE_ME
 
 #endif
 

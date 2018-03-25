@@ -199,6 +199,67 @@ MoneyTest::test_merge_sort_A()
 
 }
 
+
+void
+MoneyTest::test_qs_partition_A()
+{
+
+    Money::MyArray5 unpartitioned = {5, 1, 8, 2, 4};
+    Money::MyArray5 partitioned =   {1, 2, 4, 5, 8};
+    Money::MyArray5 result;
+
+    Money money;
+    money = Money();
+
+    uint start = 0;
+    uint stop = unpartitioned.size() - 1;
+
+    money.merge_sort(unpartitioned, start, stop);
+    result = unpartitioned;
+
+    if (result != partitioned) {
+        cout << "test_qs_partition result: ";
+        cout_5(result);
+        cout << endl;
+        cout << "partitioned: ";
+        cout_5(partitioned);
+        cout << endl;
+    }
+    CPPUNIT_ASSERT(result == partitioned);
+
+}
+
+
+void
+MoneyTest::test_qs_partition_B()
+{
+
+    Money::MyArray5 unpartitioned = {5, 1, 8, 2, 4};
+    Money::MyArray5 partitioned =   {1, 2, 4, 5, 8};
+    Money::MyArray5 result;
+
+    Money money;
+    money = Money();
+
+    uint start = 0;
+    uint stop = unpartitioned.size() - 1;
+
+    money.merge_sort(unpartitioned, start, stop);
+    result = unpartitioned;
+
+    if (result != partitioned) {
+        cout << "test_qs_partition result: ";
+        cout_5(result);
+        cout << endl;
+        cout << "partitioned: ";
+        cout_5(partitioned);
+        cout << endl;
+    }
+    CPPUNIT_ASSERT(result == partitioned);
+
+}
+
+
 void
 MoneyTest::testEqual()
 {

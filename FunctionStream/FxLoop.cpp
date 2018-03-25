@@ -61,8 +61,6 @@ FxLoop::FxLoop(int _iStart, int _iStop, int _iStep, string _sVariableName)
 
 {
 	
-	iCurrentValue = iStart;
-	
 	NumberOfSteps = GetNumberOfSteps();
 
 #ifdef INCLUDE_FULL_CODE
