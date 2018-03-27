@@ -300,7 +300,36 @@ MoneyTest::test_quicksort_A()
     money.quicksort(unpartitioned, start, stop);
 
     if ( !compare_subarrays(unpartitioned, partitioned, start, stop) ) {
-        cout << endl << "test_qs_partition result: ";
+        cout << endl << "test_quicksort_A result: ";
+        print_array(unpartitioned, start, stop);
+        cout << endl;
+        cout << "partitioned: ";
+        print_array(partitioned, start, stop);
+        cout << endl;
+    }
+    CPPUNIT_ASSERT(compare_subarrays(unpartitioned, partitioned, start, stop));
+
+}
+
+void
+MoneyTest::test_quicksort_B()
+{
+
+    int unpartitioned[] = {90, 80, 70, 50, 40, 30, 10};
+    int partitioned[]   = {10, 30, 40, 50, 70, 80, 90};
+
+    Money money;
+    money = Money();
+
+    uint array_size = sizeof(unpartitioned) / sizeof(unpartitioned[0]);
+    
+    uint start = 0;
+    uint stop = array_size - 1;
+
+    money.quicksort(unpartitioned, start, stop);
+
+    if ( !compare_subarrays(unpartitioned, partitioned, start, stop) ) {
+        cout << endl << "test_quicksort_B result: ";
         print_array(unpartitioned, start, stop);
         cout << endl;
         cout << "partitioned: ";

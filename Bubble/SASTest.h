@@ -16,6 +16,7 @@ class MoneyTest : public CPPUNIT_NS::TestFixture
   CPPUNIT_TEST( test_qs_partition_A );
   CPPUNIT_TEST( test_qs_partition_B );
   CPPUNIT_TEST( test_quicksort_A );
+  CPPUNIT_TEST( test_quicksort_B );
   CPPUNIT_TEST( testConstructor );
   CPPUNIT_TEST( testEqual );
   CPPUNIT_TEST( testAdd );
@@ -35,6 +36,7 @@ public:
   void test_qs_partition_A();
   void test_qs_partition_B();
   void test_quicksort_A();
+  void test_quicksort_B();
   void testConstructor();
   void testEqual();
   void testAdd();
