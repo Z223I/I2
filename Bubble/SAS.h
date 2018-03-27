@@ -209,7 +209,22 @@ public:
         return (i + 1);
     }
 
-  double getAmount() const
+    void quicksort(int arr[], int low, int high) {
+        int length = high - low + 1;
+        if (length < 2) {
+            return;
+        }
+
+        uint pivot;
+        pivot = qs_partition(arr, low, high);
+
+        quicksort(arr, low, pivot -1);
+        quicksort(arr, pivot + 1, high);
+        return;
+    }
+
+  
+    double getAmount() const
   {
     return m_amount;
   }

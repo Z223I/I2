@@ -224,7 +224,6 @@ MoneyTest::test_merge_sort_A()
 
 }
 
-//#define OIWEFJHOSIKDFJ
 void
 MoneyTest::test_qs_partition_A()
 {
@@ -270,6 +269,35 @@ MoneyTest::test_qs_partition_B()
     uint stop = array_size - 1;
 
     money.qs_partition(unpartitioned, start, stop);
+
+    if ( !compare_subarrays(unpartitioned, partitioned, start, stop) ) {
+        cout << endl << "test_qs_partition result: ";
+        print_array(unpartitioned, start, stop);
+        cout << endl;
+        cout << "partitioned: ";
+        print_array(partitioned, start, stop);
+        cout << endl;
+    }
+    CPPUNIT_ASSERT(compare_subarrays(unpartitioned, partitioned, start, stop));
+
+}
+
+void
+MoneyTest::test_quicksort_A()
+{
+
+    int unpartitioned[] = {10, 80, 30, 90, 40, 50, 70};
+    int partitioned[]   = {10, 30, 40, 50, 70, 80, 90};
+
+    Money money;
+    money = Money();
+
+    uint array_size = sizeof(unpartitioned) / sizeof(unpartitioned[0]);
+    
+    uint start = 0;
+    uint stop = array_size - 1;
+
+    money.quicksort(unpartitioned, start, stop);
 
     if ( !compare_subarrays(unpartitioned, partitioned, start, stop) ) {
         cout << endl << "test_qs_partition result: ";
